@@ -4,7 +4,7 @@ import { formatDate } from '../js/helper.js';
 const { id, nom_film, date_film, duree_min, genre, affiche, synopsis, langue, liste_acteur, liste_realisateur, metteur_scene, date_projection } = Astro.props;
 
 const dateFilm = formatDate(date_film);
-const dateProject = date_projection ? formatDate(date_projection) : null;
+const dateProject = formatDate(date_projection) 
 
 // Construction de l'URL de l'affiche
 const afficheUrl = affiche ? `http://127.0.0.1:8090/api/files/film/${id}/${affiche}` : '/images/placeholder-affiche.jpg';
@@ -20,7 +20,6 @@ const afficheUrl = affiche ? `http://127.0.0.1:8090/api/files/film/${id}/${affic
         <div class="p-5">
             <h3 class="font-bold text-xl mb-2">{nom_film}</h3>
             
-            <!-- Informations de base -->
             <div class="flex flex-wrap gap-2 mb-3">
                 <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">{genre}</span>
                 <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">{duree_min} min</span>
@@ -38,7 +37,6 @@ const afficheUrl = affiche ? `http://127.0.0.1:8090/api/files/film/${id}/${affic
                 
             </div>
             
-            <!-- Équipe du film -->
             <div class="mb-3 space-y-1">
                 {liste_realisateur && liste_realisateur.length > 0 && 
                     <p class="text-gray-700 text-sm">
@@ -59,7 +57,6 @@ const afficheUrl = affiche ? `http://127.0.0.1:8090/api/files/film/${id}/${affic
                 }
             </div>
             
-            <!-- Synopsis -->
             <p class="text-gray-700 line-clamp-3 text-sm mt-3">{synopsis}</p>
         </div>
     </a>

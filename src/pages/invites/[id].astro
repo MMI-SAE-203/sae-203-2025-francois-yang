@@ -1,0 +1,78 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getInviteByID } from "../../../backend/backend.mjs";
+import { formatDate } from "../../js/helper.js";
+const { id } = Astro.params;
+
+let invite;
+try {
+  invite = await getInviteByID(id);
+} catch (error) {
+  console.error("Erreur lors de la récupération de l'invite:", error);
+  return Astro.redirect("/programme");
+}
+
+const photoUrl = invite.photo
+  ? `http://127.0.0.1:8090/api/files/invite/${invite.id}/${invite.affiche}`
+  : "/images/placeholder-affiche.jpg";
+
+const dateNaissance = formatDate(invite.date_naissance);
+
+---
+
+<Layout title={invite.nom}>
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <a
+      href="/invites"
+      class="text-yellow-600 hover:underline mb-6 inline-block"
+    >
+      Retour à la liste d'invité
+    </a>
+
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="md:flex">
+        <div class="md:w-1/3">
+          <img
+            src={photoUrl}
+            alt={`Affiche de l'invité : ${invite.prenom} ${invite.nom}`}
+            class="w-full h-auto object-cover"
+          />
+        </div>
+
+        <div class="md:w-2/3 p-6">
+          <h1 class="text-3xl font-bold mb-4">{invite.prenom} {invite.nom}</h1>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            {
+              (
+                <span class="bg-orange-200 text-orange-800 text-bold px-3 py-1 rounded-full text-sm">
+                  {invite.role}
+                </span>
+              )
+            }
+            {
+              (
+                <span class=" bg-blue-100 px-3 py-1 rounded-full text-sm">
+                  Nationalite : {invite.nationalite}
+                </span>
+              )
+            }
+            {
+              (
+                <span class=" py-1 rounded-full text-sm">
+                  {invite.biographie}
+                </span>
+              )
+            }
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <h3 class="font-semibold text-gray-700">Date de naissance</h3>
+              <p>{dateNaissance}</p>
+            </div>
+
+          </div>
+
+  </main>
+</Layout>

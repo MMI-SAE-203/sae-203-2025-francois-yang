@@ -1,0 +1,62 @@
+---
+import { formatDate } from '../js/helper.js';
+// Définition des props que la Card recevra
+const { ...invite } = Astro.props;
+
+// Construction de l'URL de la photo
+const photoUrl = invite.photo 
+  ? `http://127.0.0.1:8090/api/files/invite/${invite.id}/${invite.photo}` 
+  : '/images/placeholder-person.jpg';
+
+// Formatage de la date de naissance si elle existe
+const dateNaissance = formatDate(invite.date_naissance)
+
+
+// Tronquer la biographie pour l'aperçu
+const bioPreview = invite.biographie 
+  ? invite.biographie.length > 100 
+    ? invite.biographie.substring(0, 100) + '...' 
+    : invite.biographie
+  : '';
+---
+
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+  <a href={`/invites/${invite.id}`} class="block">
+    <div class="relative">
+      <img 
+        src={photoUrl} 
+        alt={`${invite.prenom} ${invite.nom}`} 
+        class="w-full h-64 object-cover"
+      />
+      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+        <h3 class="text-white font-bold text-xl">
+          {invite.prenom} {invite.nom}
+        </h3>
+        {invite.role && (
+          <p class="text-white text-sm opacity-90">{invite.role}</p>
+        )}
+      </div>
+    </div>
+    
+    <div class="p-4">
+      <div class="flex flex-wrap gap-2 mb-3">
+        {invite.nationalite && (
+          <span class="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
+            {invite.nationalite}
+          </span>
+        )}
+        {dateNaissance && (
+          <span class="bg-gray-50 text-gray-700 text-xs px-2 py-1 rounded-full">
+            Né(e) le {dateNaissance}
+          </span>
+        )}
+      </div>
+      
+      {bioPreview && (
+        <div class="mt-3">
+          <p class="text-gray-600 text-sm line-clamp-3">{bioPreview}</p>
+        </div>
+      )}
+    </div>
+  </a>
+</div>

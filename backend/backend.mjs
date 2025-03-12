@@ -18,10 +18,13 @@ export async function getAllActivitiesByDate() {
 }
 
 export async function getAllInviteSorted() {
-    const records_invite = await pb.collection('invite').getFullList({
+    let records_inviteFull = await pb.collection('invite').getFullList({
         sort: 'nom',
     });
-    return records_invite;
+    records_inviteFull.img=records_inviteFull.map((record_inviteFull) => {
+     record_inviteFull.img = pb.files.getURL(record_inviteFull, record_inviteFull.imgUrl);
+    });
+    return records_inviteFull;
 }
 
 export async function getFilmByID(id) {
@@ -31,13 +34,15 @@ export async function getFilmByID(id) {
 }
 
 export async function getAllFilms() {
-    
+
     const record_idFull = await pb.collection('film').getFullList({
         sort: 'date_film',
     });
     record_idFull.img = pb.files.getURL(record_idFull, record_idFull.imgUrl);
     return record_idFull;
 }
+
+
 
 export async function getActiviteByID(id) {
     const record_id_activite = await pb.collection('activite').getOne(id);
@@ -68,8 +73,8 @@ export async function getActivitiesByAnimatorName(name) {
 export async function UpdateData(id, data) {
     const collections = ['film', 'activite', 'invite'];
     for (const collection of collections) {
-            const record = await pb.collection(collection).update(id, data);
-            return record;
+        const record = await pb.collection(collection).update(id, data);
+        return record;
     }
 }
 

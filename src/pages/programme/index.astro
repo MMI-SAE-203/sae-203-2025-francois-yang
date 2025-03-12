@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Card from "../../components/Card.astro";
+import FilmCard from "../../components/FilmCard.astro";
 
 import { getAllFilms } from "../../../backend/backend.mjs";
 const films = await getAllFilms();
@@ -15,7 +15,7 @@ const films = await getAllFilms();
 		{
 			films.length > 0 ? (
 				films.map((film) => (
-					<Card
+					<FilmCard
 						id={film.id}
 						nom_film={film.nom_film}
 						date_film={film.date_film}
