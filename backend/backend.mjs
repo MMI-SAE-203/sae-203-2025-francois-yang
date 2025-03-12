@@ -26,7 +26,17 @@ export async function getAllInviteSorted() {
 
 export async function getFilmByID(id) {
     const record_id = await pb.collection('film').getOne(id);
+    record_id.img = pb.files.getURL(record_id, record_id.imgUrl);
     return record_id;
+}
+
+export async function getAllFilms() {
+    
+    const record_idFull = await pb.collection('film').getFullList({
+        sort: 'date_film',
+    });
+    record_idFull.img = pb.files.getURL(record_idFull, record_idFull.imgUrl);
+    return record_idFull;
 }
 
 export async function getActiviteByID(id) {

@@ -1,0 +1,59 @@
+---
+import "../styles/global.css";
+---
+
+<header
+    class="flex items-center justify-between px-4 gap-8 border-b-2 h-30 w-full transition-all duration-300 ease-in-out lg:py-0 bg-orange-300"
+    id="header"
+    :class="{ '!-translate-y-full !bg-transparent': !atTop }"
+>
+    <div class="flex items-center">
+        <a href="/" aria-label="Accueil">
+            <img src="../assets/icon/logo_site_festival1.webp" />
+        </a>
+    </div>
+    <div class="flex items-center gap-4 lg:flex-row-reverse">
+        <button aria-label="Recherche"> </button>
+
+        <button
+            class="relative z-10 flex h-5 w-8 flex-col justify-between *:h-[2px] *:w-full *:bg-black *:transition-all *:duration-300 *:ease lg:hidden"
+            id="menu-btn"
+            aria-label="Menu"
+            aria-controls="menu"
+        >
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+
+        <nav
+            id="menu"
+            class="invisible fixed inset-0 bg-indigo text-2xl text-white opacity-0 transition-all duration-300 ease-in-out lg:visible lg:relative lg:flex lg:items-center lg:bg-transparent lg:text-sm lg:font-bold lg:uppercase lg:tracking-wide lg:text-black lg:opacity-100 lg:mr-100"
+            aria-hidden="true"
+        >
+            <ul class="mx-16 lg:m-0 lg:flex lg:space-x-8">
+                <li class="menu-item">
+                    <a href="/accueil" class="menu-link lg:mr-4">Accueil</a>
+                </li>
+                <li class="menu-item">
+                    <a href="/a_propos" class="menu-link lg:mr-4">A propos</a>
+                </li>
+                <li class="menu-item">
+                    <a href="/festival" class="menu-link lg:mr-4">Le Festival</a
+                    >
+                </li>
+                <li class="menu-item">
+                    <a href="/programme" class="menu-linklg:mr-4"
+                        >Le Programme</a
+                    >
+                </li>
+                <li class="menu-item">
+                    <a href="/invite" class="menu-link lg:mr-4">Les Invités</a>
+                </li>
+                <li class="menu-item">
+                    <a href="/contact" class="menu-link lg:mr-4">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

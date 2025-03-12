@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+  
+
+  @layer components {
+    
+    .menu--open {
+      @apply !visible !opacity-100;
+    }
+  
+    .header--hidden {
+      @apply -translate-y-full;
+    }
+    .header--bg {
+      @apply bg-white;
+      #menu-btn > div {
+        @apply bg-black;
+      }
+      svg > * {
+        @apply !bg-black;
+      }
+    }
+    .noscroll {
+      overflow: hidden;
+    }
+  }
+  
+@theme {
+	
+	
+  --my-grid: repeat(12, minmax(0, 64px));
+}
+
+@layer base {
+    .container {
+        @apply mx-auto px-6 lg:px-0 lg:max-w-7xl;
+    }
+}
+
+@layer components {
+  .grille {
+    @apply px-6 lg:grid lg:grid-cols-(--my-grid) lg:justify-center lg:gap-12;
+  }
+}

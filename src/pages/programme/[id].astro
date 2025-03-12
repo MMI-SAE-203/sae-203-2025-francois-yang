@@ -1,0 +1,135 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getFilmByID } from "../../../backend/backend.mjs";
+import { formatDate } from "../../js/helper.js";
+const { id } = Astro.params;
+
+let film;
+try {
+  film = await getFilmByID(id);
+} catch (error) {
+  console.error("Erreur lors de la récupération du film:", error);
+  return Astro.redirect("/programme");
+}
+
+const afficheUrl = film.affiche
+  ? `http://127.0.0.1:8090/api/files/film/${film.id}/${film.affiche}`
+  : "/images/placeholder-affiche.jpg";
+
+const dateFilm = formatDate(film.date_film);
+const dateProjection = formatDate(film.date_projection);
+
+---
+
+<Layout title={film.nom_film}>
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <a
+      href="/programme"
+      class="text-yellow-600 hover:underline mb-6 inline-block"
+    >
+      Retour au programme
+    </a>
+
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div class="md:flex">
+        <div class="md:w-1/3">
+          <img
+            src={afficheUrl}
+            alt={`Affiche du film ${film.nom_film}`}
+            class="w-full h-auto object-cover"
+          />
+        </div>
+
+        <div class="md:w-2/3 p-6">
+          <h1 class="text-3xl font-bold mb-4">{film.nom_film}</h1>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            {
+              (
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                  {film.genre}
+                </span>
+              )
+            }
+            {
+              (
+                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
+                  {film.duree_min} min
+                </span>
+              )
+            }
+            {
+              (
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                  {film.langue}
+                </span>
+              )
+            }
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <h3 class="font-semibold text-gray-700">Date de sortie</h3>
+              <p>{dateFilm}</p>
+            </div>
+
+            {
+              (
+                <div>
+                  <h3 class="font-semibold text-gray-700">
+                    Date de projection
+                  </h3>
+                  <p>{dateProjection}</p>
+                </div>
+              )
+            }
+          </div>
+
+          {/* Équipe du film */}
+          <div class="mb-6">
+            {
+              film.liste_realisateur && film.liste_realisateur.length > 0 && (
+                <div class="mb-2">
+                  <h3 class="font-semibold text-gray-700">Réalisation</h3>
+                  <p>
+                    {Array.isArray(film.liste_realisateur)
+                      ? film.liste_realisateur.join(", ")
+                      : film.liste_realisateur}
+                  </p>
+                </div>
+              )
+            }
+
+            {
+              (
+                <div class="mb-2">
+                  <h3 class="font-semibold text-gray-700">Mise en scène</h3>
+                  <p>{film.metteur_scene}</p>
+                </div>
+              )
+            }
+
+            {
+              (
+                <div>
+                  <h3 class="font-semibold text-gray-700">Casting</h3>
+                  <p>
+                    {Array.isArray(film.liste_acteur)
+                      ? film.liste_acteur.join(", ")
+                      : film.liste_acteur}
+                  </p>
+                </div>
+              )
+            }
+          </div>
+        </div>
+      </div>
+
+      {/* Synopsis - section pleine largeur */}
+      <div class="p-6 border-t">
+        <h3 class="font-semibold text-gray-700 text-xl mb-2">Synopsis</h3>
+        <p class="text-gray-800 leading-relaxed">{film.synopsis}</p>
+      </div>
+    </div>
+  </main>
+</Layout>

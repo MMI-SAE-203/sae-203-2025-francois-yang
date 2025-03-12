@@ -1,0 +1,66 @@
+---
+import { formatDate } from '../js/helper.js';
+// Définition des props que la Card recevra
+const { id, nom_film, date_film, duree_min, genre, affiche, synopsis, langue, liste_acteur, liste_realisateur, metteur_scene, date_projection } = Astro.props;
+
+const dateFilm = formatDate(date_film);
+const dateProject = date_projection ? formatDate(date_projection) : null;
+
+// Construction de l'URL de l'affiche
+const afficheUrl = affiche ? `http://127.0.0.1:8090/api/files/film/${id}/${affiche}` : '/images/placeholder-affiche.jpg';
+---
+
+<div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <a href={`/programme/${id}`} class="block">
+        <img 
+            src={afficheUrl} 
+            alt={`Affiche du film ${nom_film}`} 
+            class="w-full h-64 object-cover"
+        />
+        <div class="p-5">
+            <h3 class="font-bold text-xl mb-2">{nom_film}</h3>
+            
+            <!-- Informations de base -->
+            <div class="flex flex-wrap gap-2 mb-3">
+                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">{genre}</span>
+                <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">{duree_min} min</span>
+                 <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">{langue}</span>
+            </div>
+            
+            <div class="mb-3">
+                <p class="text-gray-600 text-sm">
+                    <span class="font-medium">Date de sortie initiale:</span> {dateFilm}
+                </p>
+               
+                    <p class="text-gray-600 text-sm mt-1">
+                        <span class="font-medium">Date de Projection:</span> {dateProject}
+                    </p>
+                
+            </div>
+            
+            <!-- Équipe du film -->
+            <div class="mb-3 space-y-1">
+                {liste_realisateur && liste_realisateur.length > 0 && 
+                    <p class="text-gray-700 text-sm">
+                        <span class="font-medium">Réalisation:</span> {liste_realisateur}
+                    </p>
+                }
+                
+                {metteur_scene && 
+                    <p class="text-gray-700 text-sm">
+                        <span class="font-medium">Mise en scène:</span> {metteur_scene}
+                    </p>
+                }
+                
+                {liste_acteur && liste_acteur.length > 0 && 
+                    <p class="text-gray-700 text-sm">
+                        <span class="font-medium">Avec:</span> {liste_acteur}
+                    </p>
+                }
+            </div>
+            
+            <!-- Synopsis -->
+            <p class="text-gray-700 line-clamp-3 text-sm mt-3">{synopsis}</p>
+        </div>
+    </a>
+</div>

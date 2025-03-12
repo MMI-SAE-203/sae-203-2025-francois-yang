@@ -1,4 +1,3 @@
-/*
 //trie des films par projection
 import { getAllMoviesProjectionDate  } from "./backend.mjs";
 
@@ -35,6 +34,14 @@ import { getFilmByID  } from "./backend.mjs";
 try{
     const film = await getFilmByID('kjux4bm8w8zg2a0');
     console.log(film);
+} catch (e) {
+    console.error(e);
+}
+
+import { getAllFilms } from "./backend.mjs";
+try {
+    const films = await getAllFilms();
+    console.log(films);
 } catch (e) {
     console.error(e);
 }
@@ -92,7 +99,6 @@ try {
 } catch (e) {
     console.error('Erreur lors de la mise à jour des données:', e);
 }
-    */
 
 import { Userauth } from "./backend.mjs";
     try {

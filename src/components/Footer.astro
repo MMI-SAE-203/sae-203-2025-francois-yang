@@ -1,0 +1,110 @@
+---
+// filepath: c:\Travail\BUT MMI\Saé\Sae-203\sae-203-2025-francois-yang\src\components\Footer.astro
+import Facebook from "../assets/icon/facebook.svg";
+import Instagram from "../assets/icon/instagram.svg";
+import Twitter from "../assets/icon/twitter.svg";
+import Youtube from "../assets/icon/youtube.svg";
+import Tiktok from "../assets/icon/tiktok.svg"; // Assurez-vous d'avoir ce fichier
+---
+
+<footer class="bg-gray-800 w-full py-10 px-6 text-white">
+    <div class="max-w-7xl mx-auto">
+        <!-- Logo aligné à gauche -->
+        <div class="flex justify-start">
+            <a href="/" aria-label="Accueil">
+<img src="../assets/icon/logo_site_festival2.webp" alt="Logo du festival Flash Ciné 25" class="w-32 h-auto" />
+            </a>
+        </div>
+
+        <!-- Titre centré -->
+        <div class="text-center mb-12">
+            <h2 class="text-2xl font-semibold">Festival Flash Ciné 25</h2>
+        </div>
+
+        <!-- Section principale du footer - responsive en grille sur desktop -->
+        <div class="grid grid-cols-1 gap-y-10 md:grid-cols-3 md:gap-x-8 mb-16">
+            <!-- Suivez-nous -->
+            <div>
+                <h3 class="text-lg font-bold mb-6">Nous suivre</h3>
+                <div class="flex space-x-6">
+                    <a
+                        href="https://facebook.com"
+                        aria-label="Facebook"
+                        class=" rounded-full p-2 w-10 h-10 flex items-center justify-center"
+                    >
+                        <Facebook class="w-6 h-6" />
+                    </a>
+                    <a
+                        href="https://tiktok.com"
+                        aria-label="TikTok"
+                        class=" rounded-full p-2 w-10 h-10 flex items-center justify-center"
+                    >
+                        <Tiktok class="w-6 h-6" />
+                    </a>
+                    <a
+                        href="https://youtube.com"
+                        aria-label="Youtube"
+                        class=" rounded-full p-2 w-10 h-10 flex items-center justify-center"
+                    >
+                        <Youtube class="w-6 h-6" />
+                    </a>
+                    <a
+                        href="https://twitter.com"
+                        aria-label="Twitter"
+                        class=" rounded-full p-2 w-10 h-10 flex items-center justify-center"
+                    >
+                        <Twitter class="w-6 h-6" />
+                    </a>
+                    <a
+                        href="https://instagram.com"
+                        aria-label="Instagram"
+                        class=" rounded-full p-2 w-10 h-10 flex items-center justify-center"
+                    >
+                        <Instagram class="w-6 h-6" />
+                    </a>
+                </div>
+            </div>
+
+            <!-- Liens utiles -->
+            <div>
+                <h3 class="text-lg font-bold mb-6">Liens utiles</h3>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="/mentions_legales" class="hover:underline"
+                            >Mentions légales</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/contact" class="hover:underline"
+                            >Contact et accès</a
+                        >
+                    </li>
+                    <li>
+                        <a href="/faq" class="hover:underline">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Informations utiles -->
+            <div>
+                <h3 class="text-lg font-bold mb-6">Informations utiles</h3>
+                <address class="not-italic">
+                    26 Rue Pierre Vernier, 25290 Ornans <br />
+                    tel: 03 81 62 40 30 <br />
+                </address>
+            </div>
+        </div>
+
+        <!-- Logos partenaires en bas -->
+        <div class="flex flex-col md:flex-row md:justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                
+<img src="../assets/icon/ornans.webp" alt="Logo de la ville d'Ornans" class="w-20 h-auto" />                
+            </div>
+            <div>
+                
+<img src="../assets/icon/picto_accessibilite1.webp" alt="Pictogramme" class="w-20 h-auto" />                
+            </div>
+        </div>
+    </div>
+</footer>
