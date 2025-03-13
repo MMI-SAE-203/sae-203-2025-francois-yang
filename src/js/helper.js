@@ -5,9 +5,7 @@ export function formatDate(dateString) {
       day: "numeric",
       month: "long",
       year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      hour12: false,
+      
       timeZone: "Europe/Paris",
     };
   

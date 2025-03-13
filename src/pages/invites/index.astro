@@ -3,35 +3,63 @@ import Layout from "../../layouts/Layout.astro";
 import InviteCard from "../../components/InviteCard.astro";
 import { getAllInviteSorted } from "../../../backend/backend.mjs";
 const invites = await getAllInviteSorted();
+
+// Liste de tous les rôles possibles
+const allRoles = ["Réalisateur", "Acteur", "Animateur"];
+
 ---
 
 <Layout title="Liste des invités">
-    <h1 class="text-3xl font-bold text-center my-8">Les invités du festival</h1>
+    <div x-data="{ activeFilter: 'all' }">
+        <h1 class="text-3xl font-bold text-center my-8">Les invités du festival</h1>
 
-       <div class="mb-8 flex flex-wrap gap-4 justify-center">
-        <button class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-yellow-200 transition-colors">
-          Tous
-        </button>
-        <button class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
-          Réalisateurs
-        </button>
-        <button class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
-          Acteurs
-        </button>
-        <button class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors">
-          Compositeurs
-        </button>
-      </div>
+        <div class="mb-8 flex flex-wrap gap-4 justify-center">
+            <button 
+                @click="activeFilter = 'all'"
+                :class="activeFilter === 'all' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'"
+                class="px-4 py-2 rounded-full text-sm font-medium hover:bg-yellow-200 transition-colors"
+            >
+                Tous
+            </button>
+            
+            {allRoles.map(role => (
+                <button 
+                    @click={`activeFilter = '${role.toLowerCase()}'`}
+                    :class={`activeFilter === '${role.toLowerCase()}' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'`}
+                    class="px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors"
+                >
+                    {role}s
+                </button>
+            ))}
+        </div>
 
-    <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 max-w-6xl mx-auto px-4"
-    >
-        {
-            invites.length > 0 ? (
-                invites.map((invite) => <InviteCard {...invite} />)
-            ) : (
-                <p class="text-center col-span-full">Aucun invité à afficher.</p>
-            )
-        }
+        <div
+            id="invites-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 max-w-6xl mx-auto px-4"
+        >
+            {
+                invites.length > 0 ? (
+                    invites.map((invite) => (
+                        <div 
+                            x-show={`activeFilter === 'all' || '${invite.roles?.join(',').toLowerCase() || ''}'.includes(activeFilter)`}
+                            class="transition-opacity duration-300"
+                        >
+                            <InviteCard {...invite} />
+                        </div>
+                    ))
+                ) : (
+                    <p class="text-center col-span-full">Aucun invité à afficher.</p>
+                )
+            }
+            
+            <!-- Message affiché quand aucun résultat ne correspond au filtre -->
+            <p 
+                x-show={`!document.querySelectorAll('#invites-grid > div[style*="display: block"]').length && activeFilter !== 'all'`}
+                x-cloak
+                class="text-center col-span-full"
+            >
+                Aucun invité ne correspond à ce filtre.
+            </p>
+        </div>
     </div>
 </Layout>

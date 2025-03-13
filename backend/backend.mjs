@@ -31,7 +31,9 @@ export async function getAllInviteSorted() {
 }
 
 export async function getFilmByID(id) {
-    const record_id = await pb.collection('film').getOne(id);
+    const record_id = await pb.collection('film').getOne(id, {
+        expand: 'invite_lie'
+    });
     record_id.img = pb.files.getURL(record_id, record_id.imgUrl);
     return record_id;
 }
@@ -48,7 +50,9 @@ export async function getAllFilms() {
 
 
 export async function getActiviteByID(id) {
-    const record_id_activite = await pb.collection('activite').getOne(id);
+    const record_id_activite = await pb.collection('activite').getOne(id,{
+        expand: 'invite_lie',
+    });
     return record_id_activite;
 }
 
@@ -67,8 +71,8 @@ export async function getFilmByAnimatorID(id) {
 
 export async function getActivitiesByAnimatorID(id) {
     const records_activites = await pb.collection('activite').getFullList({
-        filter: `id="${id}"`,
-        expand: 'invite',
+        filter: `invite_lie.id="${id}"`,
+        expand: 'invite_lie',
     });
     return records_activites;
 }
@@ -93,3 +97,4 @@ export async function Userauth(login, password) {
     const authData = await pb.collection('users').authWithPassword(login, password);
     return authData;
 }
+

@@ -1,30 +1,35 @@
 ---
-import LayoutBase from '../layouts/Layout.astro';
-import { Picture } from 'astro:assets';
+import LayoutBase from "./Layout.astro";
+import { Picture } from "astro:assets";
 
-const { title, description, subTitle, src, alt, classContent = "main-content max-w-2xl mx-6 my-16  lg:mx-auto *:space-y-6" } = Astro.props;
+const { title, description, src, alt } = Astro.props;
 ---
+
 <LayoutBase title={title} description={description}>
-    <div
-        class="grille grid h-screen grid-rows-[4fr_1fr] relative lg:grid-rows-[3fr_1fr]"
-    >
-        <div class="my-12 space-y-8 self-end lg:col-span-9 z-[2] text-white">
-            <h1>{title}</h1>
-        </div>
+    <div class="relative w-full">
         <div
-            class="relative z-[1] row-start-2 flex items-center px-6 -mx-6 bg-white text-xl leading-normal lg:text-3xl lg:col-span-9 lg:mx-0 lg:pl-0 lg:before:absolute lg:before:top-0 lg:before:ml-[-100%] lg:before:h-full lg:before:w-full lg:before:bg-white"
+            class="w-full h-[40vh] md:h-[50vh] lg:h-[60vh] relative overflow-hidden"
         >
-            <slot name="chapo" />
+            <Picture
+                src={src}
+                alt={alt}
+                pictureAttributes={{
+                    class: "w-full h-full object-cover",
+                }}
+            />
+
+            <div class="absolute inset-0 bg-black/20"></div>
+            <div
+                class="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
+            >
+                <h1 class="text-3xl md:text-4xl font-serif text-white mb-2">
+                    {title}
+                </h1>
+                <p class="text-lg text-white italic">{description}</p>
+            </div>
         </div>
-        <Picture
-            pictureAttributes={{
-                class: "duotone absolute inset-0 object-cover",
-            }}
-            src={src}
-            alt={alt}
-        />
     </div>
-    <div class="max-w-2xl mx-6 my-16 lg:mx-auto">
-        <slot name="content" />
+    <div class="w-full max-w-4xl mx-auto px-4 py-8">
+        <slot />
     </div>
 </LayoutBase>

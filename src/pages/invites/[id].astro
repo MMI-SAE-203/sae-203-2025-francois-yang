@@ -8,8 +8,7 @@ let  invite = await getInviteByID(id);
 
 const photoUrl = invite.photo
   ? `http://127.0.0.1:8090/api/files/invite/${invite.id}/${invite.affiche}`
-  : "/images/placeholder-affiche.jpg";
-
+  : "";
 const dateNaissance = formatDate(invite.date_naissance);
 
 ---

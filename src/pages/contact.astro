@@ -1,0 +1,62 @@
+---
+import LayoutWithHero from "../layouts/LayoutWithHero.astro";
+import imgHeroContact from "../assets/hero/image_header_contact.jpg";
+const title = "Contact";
+---
+
+<LayoutWithHero title={title} src={imgHeroContact} alt="Contact" description="Vous pouvez nous joindre !">
+    <div class="bg-white w-full max-w-md mx-auto mt-8 p-6 rounded-lg shadow-sm">
+        <h2 class="text-xl mb-6">Nous contacter</h2>
+
+        <form class="space-y-4">
+            <div>
+                <input
+                    type="text"
+                    name="prenom"
+                    placeholder="Prénom"
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+            </div>
+            <div>
+                <input
+                    type="text"
+                    name="nom"
+                    placeholder="Nom"
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+            </div>
+            <div>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Adresse électronique"
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+            </div>
+            <div>
+                <input
+                    type="tel"
+                    name="telephone"
+                    placeholder="Numéro de téléphone"
+                    class="w-full p-3 border border-gray-300 rounded"
+                />
+            </div>
+            <div>
+                <textarea
+                    name="message"
+                    placeholder="Message"
+                    rows="4"
+                    class="w-full p-3 border border-gray-300 rounded"
+                ></textarea>
+            </div>
+            <div class="text-center mt-6">
+                <button
+                    type="submit"
+                    class="bg-white hover:bg-gray-100 text-gray-800 font-medium py-2 px-6 border border-gray-400 rounded shadow"
+                >
+                    Envoyer
+                </button>
+            </div>
+        </form>
+    </div>
+</LayoutWithHero>
