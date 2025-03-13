@@ -7,6 +7,7 @@ import alpinejs from '@astrojs/alpinejs';
 import tailwindcss from '@tailwindcss/vite';
 
 import svelte from '@astrojs/svelte';
+import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +15,8 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone'
   }),
+
+
   integrations: [alpinejs(), svelte()],
 experimental: { svg: true },
   vite: {
