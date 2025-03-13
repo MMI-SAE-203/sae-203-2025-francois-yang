@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import InviteCard from "../../components/InviteCard.astro";
-
 import { getAllInviteSorted } from "../../../backend/backend.mjs";
 const invites = await getAllInviteSorted();
 ---
@@ -9,7 +8,6 @@ const invites = await getAllInviteSorted();
 <Layout title="Liste des invités">
     <h1 class="text-3xl font-bold text-center my-8">Les invités du festival</h1>
 
-       <!-- Filtres optionnels pour les invités -->
        <div class="mb-8 flex flex-wrap gap-4 justify-center">
         <button class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium hover:bg-yellow-200 transition-colors">
           Tous

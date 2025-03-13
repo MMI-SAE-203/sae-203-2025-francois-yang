@@ -9,14 +9,14 @@ import "../styles/global.css";
 >
     <div class="flex items-center flex-shrink-0">
         <a href="/" aria-label="Accueil" class="flex-shrink-0">
-            <img 
-                src="src/assets/icon/logo_site_festival1.webp" 
-                alt="Logo Flash Ciné 25" 
-                class="w-32 h-auto min-w-[128px]" 
+            <img
+                src="src/assets/icon/logo_site_festival1.webp"
+                alt="Logo Flash Ciné 25"
+                class="w-32 h-auto min-w-[128px]"
             />
         </a>
     </div>
-    
+
     <div class="flex items-center gap-4 lg:flex-row-reverse">
         <button aria-label="Recherche"> </button>
 
@@ -26,75 +26,122 @@ import "../styles/global.css";
             aria-label="Menu"
             aria-controls="menu"
         >
-            <span class="h-[2px] w-full bg-black transition-all duration-300 ease-in-out"></span>
-            <span class="h-[2px] w-full bg-black transition-all duration-300 ease-in-out"></span>
-            <span class="h-[2px] w-full bg-black transition-all duration-300 ease-in-out"></span>
+            <span
+                class="h-[2px] w-full bg-black transition-all duration-300 ease-in-out"
+            ></span>
+            <span
+                class="h-[2px] w-full bg-black transition-all duration-300 ease-in-out"
+            ></span>
+            <span
+                class="h-[2px] w-full bg-black transition-all duration-300 ease-in-out"
+            ></span>
         </button>
 
         <nav
             id="menu"
-            class="invisible fixed inset-0 bg-orange-400 text-2xl text-white opacity-0 transition-all duration-300 ease-in-out lg:visible lg:relative lg:flex lg:items-center lg:bg-transparent lg:text-sm lg:font-bold lg:uppercase lg:tracking-wide lg:text-black lg:opacity-100 lg:mr-100"
+            class="invisible fixed inset-0 bg-orange-400 text-2xl text-white opacity-0 transition-all duration-300 ease-in-out lg:visible lg:relative lg:flex lg:items-center lg:bg-transparent lg:text-base lg:font-bold lg:uppercase lg:tracking-wide lg:text-black lg:opacity-100"
             aria-hidden="true"
         >
-            <ul class="mx-auto flex flex-col items-start justify-center h-full space-y-6 pl-8 lg:m-0 lg:flex-row lg:space-y-0 lg:space-x-8">
-                <li class="transform transition-transform duration-300 ease-in-out hover:scale-105">
-                    <a href="/accueil" class="menu-link lg:mr-4">Accueil</a>
-                </li>
-                <li class="transform transition-transform duration-300 ease-in-out hover:scale-105">
-                    <a href="/a_propos" class="menu-link lg:mr-4">A propos</a>
-                </li>
-                <li class="transform transition-transform duration-300 ease-in-out hover:scale-105">
-                    <a href="/festival" class="menu-link lg:mr-4">Le Festival</a>
-                </li>
-                <li class="transform transition-transform duration-300 ease-in-out hover:scale-105">
-                    <a href="/programme" class="menu-link lg:mr-4">Le Programme</a>
-                </li>
-                <li class="transform transition-transform duration-300 ease-in-out hover:scale-105">
-                    <a href="/invites" class="menu-link lg:mr-4">Les Invités</a>
-                </li>
-                <li class="transform transition-transform duration-300 ease-in-out hover:scale-105">
-                    <a href="/contact" class="menu-link lg:mr-4">Contact</a>
-                </li>
+            <ul
+            class="mx-auto flex flex-col items-start justify-center h-full space-y-12 pl-8 w-full
+              lg:m-0 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-8 lg:pl-0 lg:w-auto lg:px-4"
+            >
+            <li
+                class="transform transition-transform duration-300 ease-in-out hover:scale-105 w-full lg:w-auto"
+            >
+                <a href="/accueil" class="inline-block w-full lg:px-3"
+                >Accueil</a
+                >
+            </li>
+            <li
+                class="transform transition-transform duration-300 ease-in-out hover:scale-105 w-full lg:w-auto"
+            >
+                <a href="/a_propos" class="inline-block w-full lg:px-3"
+                >A propos</a
+                >
+            </li>
+            <li
+                class="transform transition-transform duration-300 ease-in-out hover:scale-105 w-full lg:w-auto"
+            >
+                <a href="/festival" class="inline-block w-full lg:px-3"
+                >Le Festival</a
+                >
+            </li>
+            <li
+                class="transform transition-transform duration-300 ease-in-out hover:scale-105 w-full lg:w-auto"
+            >
+                <a href="/programme" class="inline-block w-full lg:px-3"
+                >Le Programme</a
+                >
+            </li>
+            <li
+                class="transform transition-transform duration-300 ease-in-out hover:scale-105 w-full lg:w-auto"
+            >
+                <a href="/invites" class="inline-block w-full lg:px-3"
+                >Les Invités</a
+                >
+            </li>
+            <li
+                class="transform transition-transform duration-300 ease-in-out hover:scale-105 w-full lg:w-auto"
+            >
+                <a href="/activites" class="inline-block w-full lg:px-3"
+                >Les Activités</a
+                >
+            </li>
+            <li
+                class="transform transition-transform duration-300 ease-in-out hover:scale-105 w-full lg:w-auto"
+            >
+                <a href="/contact" class="inline-block w-full lg:px-3"
+                >Contact</a
+                >
+            </li>
             </ul>
         </nav>
     </div>
 </header>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuBtn = document.getElementById("menu-btn");
+        const menu = document.getElementById("menu");
+        const menuLines = menuBtn.querySelectorAll("span");
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('menu-btn');
-    const menu = document.getElementById('menu');
-    const menuLines = menuBtn.querySelectorAll('span');
-    
-    if (menuBtn && menu) {
-      menuBtn.addEventListener('click', function() {
-   
-        const isMenuOpen = menu.classList.contains('lg:opacity-100') ? 
-          menu.classList.contains('opacity-100') : false;
-        
-        if (!isMenuOpen) {
-    
-          menu.classList.remove('invisible', 'opacity-0');
-          menu.classList.add('visible', 'opacity-100');
-          menu.setAttribute('aria-hidden', 'false');
-          
+        if (menuBtn && menu) {
+            menuBtn.addEventListener("click", function () {
+                const isMenuOpen = menu.classList.contains("lg:opacity-100")
+                    ? menu.classList.contains("opacity-100")
+                    : false;
 
-          menuLines[0].classList.add('rotate-45', 'translate-y-[9px]');
-          menuLines[1].classList.add('opacity-0');
-          menuLines[2].classList.add('-rotate-45', '-translate-y-[9px]');
-        } else {
+                if (!isMenuOpen) {
+                    menu.classList.remove("invisible", "opacity-0");
+                    menu.classList.add("visible", "opacity-100");
+                    menu.setAttribute("aria-hidden", "false");
 
-          menu.classList.remove('visible', 'opacity-100');
-          menu.classList.add('invisible', 'opacity-0');
-          menu.setAttribute('aria-hidden', 'true');
-          
+                    menuLines[0].classList.add(
+                        "rotate-45",
+                        "translate-y-[9px]",
+                    );
+                    menuLines[1].classList.add("opacity-0");
+                    menuLines[2].classList.add(
+                        "-rotate-45",
+                        "-translate-y-[9px]",
+                    );
+                } else {
+                    menu.classList.remove("visible", "opacity-100");
+                    menu.classList.add("invisible", "opacity-0");
+                    menu.setAttribute("aria-hidden", "true");
 
-          menuLines[0].classList.remove('rotate-45', 'translate-y-[9px]');
-          menuLines[1].classList.remove('opacity-0');
-          menuLines[2].classList.remove('-rotate-45', '-translate-y-[9px]');
+                    menuLines[0].classList.remove(
+                        "rotate-45",
+                        "translate-y-[9px]",
+                    );
+                    menuLines[1].classList.remove("opacity-0");
+                    menuLines[2].classList.remove(
+                        "-rotate-45",
+                        "-translate-y-[9px]",
+                    );
+                }
+            });
         }
-      });
-    }
-  });
+    });
 </script>

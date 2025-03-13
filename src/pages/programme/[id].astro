@@ -16,7 +16,7 @@ const dateProjection = formatDate(film.date_projection);
 Invitefilm = film.expand?.invite || [];
 ---
 
-<Layout title={film.nom_film}>
+<Layout>
 
   <main class="max-w-4xl mx-auto px-4 py-8">
     <a
@@ -81,7 +81,6 @@ Invitefilm = film.expand?.invite || [];
             }
           </div>
 
-          {/* Équipe du film */}
           <div class="mb-6">
             {
               film.liste_realisateur && film.liste_realisateur.length > 0 && (
@@ -117,7 +116,6 @@ Invitefilm = film.expand?.invite || [];
         </div>
       </div>
 
-      {/* Synopsis - section pleine largeur */}
       <div class="p-6 border-t">
         <h3 class="font-semibold text-gray-700 text-xl mb-2">Synopsis</h3>
         <p class="text-gray-800 leading-relaxed">{film.synopsis}</p>

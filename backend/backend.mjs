@@ -14,6 +14,9 @@ export async function getAllActivitiesByDate() {
     const records_activites = await pb.collection('activite').getFullList({
         sort: 'date_activite',
     });
+    records_activites.img=records_activites.map((record_activite) => {
+        record_activite.img = pb.files.getURL(record_activite, record_activite.imgUrl);
+       });
     return records_activites;
 }
 

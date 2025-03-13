@@ -4,16 +4,15 @@ import FilmCard from "../../components/FilmCard.astro";
 import Caroussel from "../../components/Caroussel.astro";
 import { getAllFilms } from "../../../backend/backend.mjs";
 const films = await getAllFilms();
-
 ---
 
 <Layout title="Programme des films">
   <h1 class="text-3xl font-bold text-center my-8">Programme des films</h1>
-      <Caroussel events={films}/>
-       
+  <Caroussel events={films} />
 
-  <!-- Grille de films visible uniquement sur tablette/desktop -->
-  <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 max-w-6xl mx-auto px-4">
+  <div
+    class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 max-w-6xl mx-auto px-4"
+  >
     {
       films.length > 0 ? (
         films.map((film) => (

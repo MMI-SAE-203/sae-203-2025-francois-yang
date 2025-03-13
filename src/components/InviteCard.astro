@@ -1,19 +1,19 @@
 ---
 import { formatDate } from '../js/helper.js';
-// Définition des props que la Card recevra
+
 const { ...invite } = Astro.props;
 
-// Construction de l'URL de la photo
+
 const photoUrl = invite.photo 
   ? `http://127.0.0.1:8090/api/files/invite/${invite.id}/${invite.photo}` 
   : '/images/placeholder-person.jpg';
 
-// Formatage de la date de naissance si elle existe
+
 const dateNaissance = formatDate(invite.date_naissance)
 
 
-// Tronquer la biographie pour l'aperçu
-const bioPreview = invite.biographie ;
+
+const bio = invite.biographie ;
 ---
 
 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -48,9 +48,9 @@ const bioPreview = invite.biographie ;
         )}
       </div>
       
-      {bioPreview && (
+      {bio && (
         <div class="mt-3">
-          <p class="text-gray-600 text-sm line-clamp-3">{bioPreview}</p>
+          <p class="text-gray-600 text-sm line-clamp-3">{bio}</p>
         </div>
       )}
     </div>
