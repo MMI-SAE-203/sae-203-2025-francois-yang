@@ -1,6 +1,6 @@
 // Francois YANG - A2
 import Pocketbase from 'pocketbase';
-const pb = new Pocketbase('http://127.0.0.1:8090');
+const pb = new Pocketbase('http://127.0.0.1:433');
 
 
 export async function getAllMoviesProjectionDate() {

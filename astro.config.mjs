@@ -12,7 +12,9 @@ import svelte from '@astrojs/svelte';
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: netlify(),
+  adapter: netlify({
+    imageCDN : true,
+  }),
   integrations: [alpinejs(), svelte()],
 experimental: { svg: true },
   vite: {

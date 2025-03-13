@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FilmCard from "../../components/FilmCard.astro";
+import Caroussel from "../../components/Caroussel.astro";
+import { getAllFilms } from "../../../backend/backend.mjs";
+const films = await getAllFilms();
+---
+
+<Layout title="Programme des films">
+  <h1 class="text-3xl font-bold text-center my-8">Programme des films</h1>
+  <Caroussel events={films} />
+
+  <div
+    class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 max-w-6xl mx-auto px-4"
+  >
+    {
+      films.length > 0 ? (
+        films.map((film) => (
+          <FilmCard
+            id={film.id}
+            nom_film={film.nom_film}
+            date_film={film.date_film}
+            duree_min={film.duree_min}
+            genre={film.genre}
+            affiche={film.affiche}
+            synopsis={film.synopsis}
+            metteur_scene={film.metteur_scene}
+            pays_origine={film.pays_origine}
+            langue={film.langue}
+            liste_acteur={film.liste_acteur}
+            liste_realisateur={film.liste_realisateur}
+            date_projection={film.date_projection}
+          />
+        ))
+      ) : (
+        <p class="text-center col-span-full">Aucun film à afficher.</p>
+      )
+    }
+  </div>
+</Layout>
