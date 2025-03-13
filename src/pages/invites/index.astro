@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import InviteCard from "../../components/InviteCard.astro";
+import "../styles/global.css";
 import { getAllInviteSorted } from "../../../backend/backend.mjs";
 const invites = await getAllInviteSorted();
 

@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getInviteByID } from "../../../backend/backend.mjs";
 import { formatDate } from "../../js/helper.js";
+import "../styles/global.css";
 const { id } = Astro.params;
 
 let  invite = await getInviteByID(id);

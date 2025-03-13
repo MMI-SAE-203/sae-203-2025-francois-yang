@@ -1,5 +1,6 @@
 ---
 import { getAllFilms } from '../../backend/backend.mjs';
+import "../styles/global.css";
 const films = await getAllFilms();
 const carouselEvents = films.map(film => ({
   id: film.id,
