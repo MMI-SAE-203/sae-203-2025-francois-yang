@@ -1,7 +1,7 @@
 // Francois YANG - A2
-
 import Pocketbase from 'pocketbase';
 const pb = new Pocketbase('http://127.0.0.1:8090');
+
 
 export async function getAllMoviesProjectionDate() {
     const records_film = await pb.collection('film').getFullList({
@@ -52,6 +52,14 @@ export async function getActiviteByID(id) {
 export async function getInviteByID(id) {
     const record_id_invite = await pb.collection('invite').getOne(id);
     return record_id_invite;
+}
+
+export async function getFilmByAnimatorID(id) {
+    const records_film = await pb.collection('film').getFullList({
+        filter: `id="${id}"`,
+        expand: 'invite',
+    });
+    return records_film;
 }
 
 export async function getActivitiesByAnimatorID(id) {

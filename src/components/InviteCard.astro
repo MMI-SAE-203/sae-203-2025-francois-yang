@@ -13,11 +13,7 @@ const dateNaissance = formatDate(invite.date_naissance)
 
 
 // Tronquer la biographie pour l'aperçu
-const bioPreview = invite.biographie 
-  ? invite.biographie.length > 100 
-    ? invite.biographie.substring(0, 100) + '...' 
-    : invite.biographie
-  : '';
+const bioPreview = invite.biographie ;
 ---
 
 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">

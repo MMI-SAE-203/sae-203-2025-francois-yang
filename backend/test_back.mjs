@@ -67,6 +67,13 @@ catch (e) {
     console.error(e);
 }
 
+import { getFilmByAnimatorID } from "./backend.mjs";
+try {
+    const film = await getFilmByAnimatorID('kjux4bm8w8zg2a0');
+    console.log(film);
+} catch (e) {
+    console.error(e);
+}
 
 //trie des activités par animateur ID
 import { getActivitiesByAnimatorID } from "./backend.mjs";

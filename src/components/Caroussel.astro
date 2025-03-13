@@ -1,0 +1,70 @@
+---
+import { getAllFilms } from '../../backend/backend.mjs';
+const films = await getAllFilms();
+const carouselEvents = films.map(film => ({
+  id: film.id,
+  title: film.nom_film,
+  img: film.affiche ? `http://127.0.0.1:8090/api/files/film/${film.id}/${film.affiche}` : "/images/placeholder-affiche.jpg",
+  description: film.synopsis,
+  genre: film.genre,
+  date: film.date_projection
+}));
+---
+
+<div class="md:hidden px-4 mb-8">
+    <div x-data=`{events:${JSON.stringify(carouselEvents)}, index: 0 }`>
+      <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
+        <img 
+          x-bind:src="events[index].img" 
+          x-bind:alt="events[index].title" 
+          class="w-full h-64 object-cover"
+        />
+        
+        <div class="p-4">
+          <h2 class="text-xl font-bold" x-text="events[index].title"></h2>
+          <div class="flex gap-2 my-2">
+            <span 
+              x-show="events[index].genre" 
+              class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
+              x-text="events[index].genre"
+            ></span>
+          </div>
+          <p class="text-gray-700 line-clamp-2 text-sm" x-text="events[index].description"></p>
+          
+          <a 
+            x-bind:href="'/programme/' + events[index].id" 
+            class="inline-block mt-3 text-yellow-600 hover:underline text-sm"
+          >
+            Voir les détails →
+          </a>
+        </div>
+      
+        <!-- Indicateur de progression -->
+        <div class="flex justify-between items-center p-3 bg-gray-50 border-t">
+          <span class="text-sm text-gray-500">
+            <span x-text="index + 1"></span> / <span x-text="events.length"></span>
+          </span>
+          
+          <div class="flex gap-2">
+            <button 
+              @click="index = (index === 0 ? events.length - 1 : index - 1)" 
+              class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-1 rounded-full"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </button>
+            
+            <button 
+              @click="index = (index === events.length - 1 ? 0 : index + 1)" 
+              class="bg-gray-200 hover:bg-gray-300 text-gray-700 p-1 rounded-full"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
