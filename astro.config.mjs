@@ -13,8 +13,11 @@ import svelte from '@astrojs/svelte';
 export default defineConfig({
   output: 'server',
   adapter: netlify({
-    imageCDN : true,
+    imageCDN : false,
   }),
+  image: {
+    domains: ['pb-sae-203-flashcine.fryg.fr'],
+  },
   integrations: [alpinejs(), svelte()],
 experimental: { svg: true },
   vite: {
