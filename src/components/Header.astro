@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import logo from "../assets/icon/logo_site_festival1.webp";
-import {Picture} from "astro:assets";
+
 ---
 
 <header
@@ -11,8 +11,8 @@ import {Picture} from "astro:assets";
 >
     <div class="flex items-center flex-shrink-0">
         <a href="/" aria-label="Accueil" class="flex-shrink-0">
-            <Picture
-                src={logo}
+            <img
+                src={logo.src}
                 alt="Logo Flash Ciné 25"
                 class="w-32 h-auto min-w-[128px]"
             />

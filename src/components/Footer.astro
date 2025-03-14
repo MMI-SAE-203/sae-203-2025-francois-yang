@@ -5,7 +5,6 @@ import Twitter from "../assets/icon/twitter.svg";
 import Youtube from "../assets/icon/youtube.svg";
 import Tiktok from "../assets/icon/tiktok.svg"; 
 import logoFooter from "../assets/icon/logo_site_festival2.webp"; 
-import {Picture} from "astro:assets";
 import logoOrnans from "../assets/icon/ornans.webp";
 import logoAccessibilite from "../assets/icon/picto_accessibilite1.webp";
 ---
@@ -15,7 +14,7 @@ import logoAccessibilite from "../assets/icon/picto_accessibilite1.webp";
         <!-- Logo aligné à gauche -->
         <div class="flex justify-start">
             <a href="/" aria-label="Accueil">
-<Picture src={logoFooter} alt="Logo du festival Flash Ciné 25" class="w-32 h-auto" />
+<img src={logoFooter.src} alt="Logo du festival Flash Ciné 25" class="w-32 h-auto" />
             </a>
         </div>
 
@@ -102,11 +101,11 @@ import logoAccessibilite from "../assets/icon/picto_accessibilite1.webp";
         <div class="flex flex-col md:flex-row md:justify-between items-center">
             <div class="mb-6 md:mb-0">
                 
-<Picture src={logoOrnans} alt="Logo de la ville d'Ornans" class="w-20 h-auto" />                
+<img src={logoOrnans.src} alt="Logo de la ville d'Ornans" class="w-20 h-auto" />                
             </div>
             <div>
                 
-<Picture src={logoAccessibilite} alt="Pictogramme" class="w-20 h-auto" />                
+<img src={logoAccessibilite.src} alt="Pictogramme" class="w-20 h-auto" />                
             </div>
         </div>
     </div>
