@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { getInviteByID } from "../../../backend/backend.mjs";
 import { formatDate } from "../../js/helper.js";
 const { id } = Astro.params;
-import "../styles/global.css";
+import "../../styles/global.css";
 let  invite = await getInviteByID(id);
 
 const photoUrl = invite.photo
