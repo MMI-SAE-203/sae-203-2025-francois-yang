@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { getFilmByID } from "../../../backend/backend.mjs";
 import { formatDate } from "../../js/helper.js";
 const { id } = Astro.params;
-
+import "../styles/global.css";
 
 let film = await getFilmByID(id);
 
