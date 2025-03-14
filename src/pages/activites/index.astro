@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ActiviteCard from "../../components/ActiviteCard.astro";
 import { getAllActivitiesByDate } from "../../../backend/backend.mjs";
-
+import "../styles/global.css";
 const activites = await getAllActivitiesByDate();
 ---
 

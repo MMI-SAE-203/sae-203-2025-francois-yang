@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import InviteCard from "../../components/InviteCard.astro";
 import { getAllInviteSorted } from "../../../backend/backend.mjs";
 const invites = await getAllInviteSorted();
-
+import "../styles/global.css";
 // Liste de tous les rôles possibles
 const allRoles = ["Réalisateur", "Acteur", "Animateur"];
 

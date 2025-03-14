@@ -4,6 +4,7 @@ import FilmCard from "../../components/FilmCard.astro";
 import Caroussel from "../../components/Caroussel.astro";
 import { getAllFilms } from "../../../backend/backend.mjs";
 const films = await getAllFilms();
+import "../styles/global.css";
 ---
 
 <Layout title="Programme des films">
