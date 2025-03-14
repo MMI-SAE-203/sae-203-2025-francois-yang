@@ -1,27 +1,5 @@
 @import "tailwindcss";
 
-  @layer components {
-    
-    .menu--open {
-      @apply !visible !opacity-100;
-    }
-  
-    .header--hidden {
-      @apply -translate-y-full;
-    }
-    .header--bg {
-      @apply bg-white;
-      #menu-btn > div {
-        @apply bg-black;
-      }
-      svg > * {
-        @apply !bg-black;
-      }
-    }
-    .noscroll {
-      overflow: hidden;
-    }
-  }
   
 @theme {
 	
