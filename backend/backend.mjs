@@ -1,6 +1,6 @@
 // Francois YANG - A2
 import Pocketbase from 'pocketbase';
-const pb = new Pocketbase('https://pb-sae-203-flashcine.fryg.fr:443');
+export const pb = new Pocketbase('https://pb-sae-203-flashcine.fryg.fr:443');
 
 
 export async function getAllMoviesProjectionDate() {
